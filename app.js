@@ -1,16 +1,17 @@
-const imagesArea = document.querySelector('.images');
+
 const gallery = document.querySelector('.gallery');
 const galleryHeader = document.querySelector('.gallery-header');
 const searchBtn = document.getElementById('search-btn');
-const sliderBtn = document.getElementById('create-slider');
 const sliderContainer = document.getElementById('sliders');
 const search = document.getElementById('search');
-// selected image
+
 let sliders = [];
 // api key
 const KEY = '15674931-a9d714b6e9d654524df198e00&q';
 
 // show images
+const imagesArea = document.querySelector('.images');
+
 const displayImages = (images) => {
     imagesArea.style.display = 'block';
     gallery.innerHTML = '';
@@ -30,7 +31,7 @@ const getImages = (query) => {
         fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
             .then((response) => response.json())
             .then((data) => displayImages(data.hits))
-            .catch((err) => console.log(err));
+            .catch((error) => console.log(error));
     }, 2000);
 };
 
@@ -133,6 +134,8 @@ const toggleSpinner = () => {
     spinner.toggle('d-none');
     imagesArea.toggle('d-none');
 };
+
+const sliderBtn = document.getElementById('create-slider');
 
 sliderBtn.addEventListener('click', function () {
     const timeout = document.getElementById('duration').value || 1000;
